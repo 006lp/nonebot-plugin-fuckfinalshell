@@ -1,11 +1,10 @@
 [build-system]
-# 使用 uv 作为构建后端，这是一个现代且快速的构建工具
-requires = ["uv_build"]
-build-backend = "uv_build"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "nonebot-plugin-fuckfinalshell"
-version = "0.1.0"
+version = "0.1.1"
 description = "基于 Nonebot2 的 FinalShell 激活码生成插件"
 readme = "README.md"
 authors = [{ name = "006lp", email = "006lpsuki@gmail.com" }]
@@ -15,6 +14,9 @@ dependencies = [
   "nonebot2>=2.4.2",
   "pycryptodome", # 用于加密计算
 ]
+
+[tool.nonebot]
+plugins = ["nonebot_plugin_fuckfinalshell"]
 
 [project.dependency-groups]
 dev = [
@@ -84,6 +86,19 @@ keep-runtime-typing = true
 [tool.pyright]
 pythonVersion = "3.10"
 pythonPlatform = "All"
+defineConstant = { PYDANTIC_V2 = true }
 typeCheckingMode = "standard"
 reportShadowedImports = false
 disableBytesTypePromotions = true
+
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/nonebot_plugin_fuckfinalshell", 
+    "/pyproject.toml",
+    "/README.md",
+    "/LICENSE", 
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["nonebot_plugin_fuckfinalshell"] 
