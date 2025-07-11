@@ -1,0 +1,89 @@
+[build-system]
+# 使用 uv 作为构建后端，这是一个现代且快速的构建工具
+requires = ["uv_build"]
+build-backend = "uv_build"
+
+[project]
+name = "nonebot-plugin-fuckfinalshell"
+version = "0.1.0"
+description = "基于 Nonebot2 的 FinalShell 激活码生成插件"
+readme = "README.md"
+authors = [{ name = "006lp", email = "006lpsuki@gmail.com" }]
+urls = { Repository = "https://github.com/006lp/nonebot-plugin-fuckfinalshell" }
+requires-python = ">=3.10"
+dependencies = [
+  "nonebot2>=2.4.2",
+  "pycryptodome", # 用于加密计算
+]
+
+[project.dependency-groups]
+dev = [
+  "nonebot2[fastapi]>=2.4.2,<3.0.0",
+  "ruff>=0.12.1,<1.0.0",
+]
+
+test = [
+  "nonebot2[fastapi]>=2.4.2,<3.0.0",
+  "nonebug>=0.3.7,<1.0.0",
+  "pytest>=8.0.0,<9.0.0",
+  "pytest-asyncio>=0.23.0,<1.0.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+addopts = [
+  "-v",
+  "-s",
+  "--tb=short",
+  "-ra",
+  "--strict-markers",
+  "--import-mode=prepend",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py38"
+
+[tool.ruff.format]
+line-ending = "lf"
+
+[tool.ruff.lint]
+select = [
+  "F",     # Pyflakes
+  "W",     # pycodestyle warnings
+  "E",     # pycodestyle errors
+  "I",     # isort
+  "UP",    # pyupgrade
+  "ASYNC", # flake8-async
+  "C4",    # flake8-comprehensions
+  "T20",   # flake8-print
+  "PYI",   # flake8-pyi
+  "PT",    # flake8-pytest-style
+  "Q",     # flake8-quotes
+  "TID",   # flake8-tidy-imports
+  "RUF",   # Ruff-specific rules
+]
+ignore = [
+  "E402",   # module-import-not-at-top-of-file
+  "E501",   # line-too-long
+  "TID252", # relative import
+]
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+known-first-party = ["nonebot_plugin_fuckfinalshell"]
+extra-standard-library = ["typing_extensions"]
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+
+[tool.ruff.lint.pyupgrade]
+keep-runtime-typing = true
+
+[tool.pyright]
+pythonVersion = "3.10"
+pythonPlatform = "All"
+typeCheckingMode = "standard"
+reportShadowedImports = false
+disableBytesTypePromotions = true
