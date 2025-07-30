@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nonebot-plugin-fuckfinalshell"
-version = "0.1.1"
+version = "0.1.2"
 description = "基于 Nonebot2 的 FinalShell 激活码生成插件"
 readme = "README.md"
 authors = [{ name = "006lp", email = "006lpsuki@gmail.com" }]
@@ -12,7 +12,7 @@ urls = { Repository = "https://github.com/006lp/nonebot-plugin-fuckfinalshell" }
 requires-python = ">=3.10"
 dependencies = [
   "nonebot2>=2.4.2",
-  "pycryptodome", # 用于加密计算
+  "pycryptodome>=3.23.0", # 用于加密计算
 ]
 
 [tool.nonebot]
